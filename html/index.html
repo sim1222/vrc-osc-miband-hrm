@@ -34,9 +34,9 @@
       <h1 id="heartrate">
         <span id="hr">-</span><span class="unit">BPM</span>
       </h1>
-      <h3>
+      <h2>
         <span id="calories">-</span><span class="unit">kcal</span>
-      </h3>
+      </h2>
     </div>
     <div class="WebSocket">
       <label class="form-group">WebSocket IP
@@ -58,7 +58,7 @@
       <input type="checkbox" id="chatbox" name="chatbox" onclick='cb(this)'>
       <label for="chatbox">Send to Chatbox</label>
       <form name="chatbox_form" style="display: flex;">
-        <input type='text' name="chatbox_text" id="chatbox_text" style='display:none' value="❤{HR} bpm ">
+        <input type='text' name="chatbox_text" id="chatbox_text" style='display:none' value="{calories} kcal ">
         <button type="button" name="SafeChatboxText" id="SafeChatboxText" style='display:none'>Save</button>
       </form>
     </div>
