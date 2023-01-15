@@ -226,7 +226,7 @@
       console.log('WebSocket Connected');
       WSStatus.classList.value = '';
       WSStatus.classList.add('Connected');
-      ws.send(JSON.stringify({"text":chatbox_text.value}));
+      // ws.send(JSON.stringify({"text":chatbox_text.value}));
       ws.send(chatbox.checked);
     })
     ws.on('close', () => {
