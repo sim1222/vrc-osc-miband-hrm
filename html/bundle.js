@@ -7757,6 +7757,7 @@
     async onAuthenticated() {
       console.log("Authentication successful");
       window.dispatchEvent(new CustomEvent("authenticated"));
+      this.measureCal();
       await this.measureHr();
     }
     async measureHr() {
@@ -7775,6 +7776,19 @@
         console.log("Pinging heart rate monitor");
         this.chars.hrControl.writeValue(Uint8Array.from([22]));
       }, 12e3);
+    }
+    async measureCal() {
+      console.log("Starting calories measurement");
+      await this.startNotifications(this.chars.steps, e => {
+        console.log("Received calories value: ", e.target.value);
+        const steps = new DataView(new Uint8Array(e.target.value.buffer).reverse().slice(0, 4).buffer).getUint32();
+        console.log("Received calories value: ", steps);
+        window.dispatchEvent(
+          new CustomEvent("calories", {
+            detail: steps,
+          })
+        );
+      });
     }
     async startNotifications(char, cb) {
       await char.startNotifications();
@@ -7960,6 +7974,7 @@
       this.chars.hrControl = await this.services.heartrate.getCharacteristic(CHAR_UUIDS.heartrate_control);
       this.chars.hrMeasure = await this.services.heartrate.getCharacteristic(CHAR_UUIDS.heartrate_measure);
       this.chars.sensor = await this.services.miband1.getCharacteristic(CHAR_UUIDS.sensor);
+      this.chars.steps = await this.services.miband1.getCharacteristic(CHAR_UUIDS.steps);
       console.log("Characteristics initialized");
       await this.authenticate();
     }

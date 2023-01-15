@@ -36,7 +36,8 @@ server.on('connection', ws => {
                     args:
                         {
                             type: "f",
-                            value: data/127-1
+                            // value: data / 127 - 1
+                            value: data / 255
                         }
                 };
                 let heartrate2 = {
@@ -55,6 +56,14 @@ server.on('connection', ws => {
                             value: data
                         }
                 };
+                // let calories = {
+                //     address: "/avatar/parameters/Calories",
+                //     args:
+                //     {
+                //         type: "f",
+                //         value: data / 255
+                //     }
+                // }
                 vrchatOSC.send(heartrate);
                 vrchatOSC.send(heartrate2);
                 vrchatOSC.send(heartrate3);
