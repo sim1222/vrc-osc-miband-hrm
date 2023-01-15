@@ -7757,8 +7757,8 @@
     async onAuthenticated() {
       console.log("Authentication successful");
       window.dispatchEvent(new CustomEvent("authenticated"));
-      this.measureCal();
       await this.measureHr();
+      this.measureCal();
     }
     async measureHr() {
       console.log("Starting heart rate measurement");
