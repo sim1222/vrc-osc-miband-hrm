@@ -269,7 +269,7 @@
       });
       window.addEventListener("calories", e => {
         console.log("Got calories", e.detail);
-        chatbox.checked ? ws.send({'text': `${e.detail} kcal`}) : console.log(); // TODO: send calories
+        chatbox.checked ? ws.send(JSON.stringify({'text': `${e.detail} kcal`})) : console.log(); // TODO: send calories
         calories.innerText = e.detail;
       });
       try {
